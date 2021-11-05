@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.taobao.tddl.dbsync.binlog.event.FormatDescriptionLogEvent;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -144,6 +145,8 @@ public class LogEventConvert extends AbstractCanalLifeCycle implements BinlogPar
                 return parseGTIDLogEvent((GtidLogEvent) logEvent);
             case LogEvent.HEARTBEAT_LOG_EVENT:
                 return parseHeartbeatLogEvent((HeartbeatLogEvent) logEvent);
+            case LogEvent.FORMAT_DESCRIPTION_EVENT:
+                return parseFormatDescriptionEvent((FormatDescriptionLogEvent) logEvent);
             default:
                 break;
         }
@@ -182,6 +185,20 @@ public class LogEventConvert extends AbstractCanalLifeCycle implements BinlogPar
 
         Header header = createHeader(logHeader, "", "", EventType.GTID);
         return createEntry(header, EntryType.GTIDLOG, builder.build().toByteString());
+    }
+
+    private Entry parseFormatDescriptionEvent(FormatDescriptionLogEvent logEvent) {
+        LogHeader logHeader = logEvent.getHeader();
+        Pair.Builder builder = Pair.newBuilder();
+        builder.setKey("isVersionBeforeChecksum");
+        builder.setValue(Boolean.toString(logEvent.isVersionBeforeChecksum()));
+        builder.setKey("binlogVersion");
+        builder.setValue(String.valueOf(logEvent.getBinlogVersion()));
+        builder.setKey("serverVersion");
+        builder.setValue(logEvent.getServerVersion());
+
+        Header header = createHeader(logHeader, "", "", EventType.FORMAT_DESCRIPTION);
+        return createEntry(header, EntryType.FORMATDESCRIPTION, builder.build().toByteString());
     }
 
     private Entry parseQueryEvent(QueryLogEvent event, boolean isSeek) {

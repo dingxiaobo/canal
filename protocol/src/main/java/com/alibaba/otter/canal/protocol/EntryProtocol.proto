@@ -196,6 +196,7 @@ enum EntryType{
 	/** 心跳类型，内部使用，外部暂不可见，可忽略 **/
 	HEARTBEAT				=		4;
 	GTIDLOG                 =       5;
+	FORMATDESCRIPTION = 6;
 }
 
 /** 事件类型 **/
@@ -219,6 +220,7 @@ enum EventType {
     XAROLLBACK  =		14;
     /** MASTER HEARTBEAT **/
     MHEARTBEAT  =       15;
+	  FORMAT_DESCRIPTION  =    16;
 }
 
 /**数据库类型**/

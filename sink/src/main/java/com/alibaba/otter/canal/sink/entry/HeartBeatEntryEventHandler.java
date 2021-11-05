@@ -40,7 +40,8 @@ public class HeartBeatEntryEventHandler extends AbstractCanalEventDownStreamHand
     }
 
     private boolean isHeartBeat(EntryType entryType){
-        return entryType == EntryType.HEARTBEAT;
+        // FORMATDESCRIPTION 和 HEARTBEAT暴露原则一样
+        return entryType == EntryType.HEARTBEAT || entryType == EntryType.FORMATDESCRIPTION;
     }
 
 }
