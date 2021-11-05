@@ -219,9 +219,9 @@ public class CanalInstanceWithManager extends AbstractCanalInstance {
 
         int groupSize = getGroupSize();
         if (groupSize <= 1) {
-            eventSink = new EntryEventSink();
+            eventSink = new EntryEventSink(parameters.getExposeHeartBeatEvent());
         } else {
-            eventSink = new GroupEventSink(groupSize);
+            eventSink = new GroupEventSink(groupSize, parameters.getExposeHeartBeatEvent());
         }
 
         if (eventSink instanceof EntryEventSink) {

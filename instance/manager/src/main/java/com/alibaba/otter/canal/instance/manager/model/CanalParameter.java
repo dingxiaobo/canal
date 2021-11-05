@@ -125,6 +125,9 @@ public class CanalParameter implements Serializable {
     //自定义alarmHandler插件文件夹路径
     private String                   alarmHandlerPluginDir              = null;
 
+    //是否将HEARTBEAT_EVENT透出给订阅方
+    private Boolean                  exposeHeartBeatEvent               = Boolean.FALSE;
+
     public static enum RunMode {
 
         /** 嵌入式 */
@@ -1010,6 +1013,14 @@ public class CanalParameter implements Serializable {
 
     public void setAlarmHandlerPluginDir(String alarmHandlerPluginDir) {
         this.alarmHandlerPluginDir = alarmHandlerPluginDir;
+    }
+
+    public Boolean getExposeHeartBeatEvent() {
+        return exposeHeartBeatEvent;
+    }
+
+    public void setExposeHeartBeatEvent(Boolean exposeHeartBeatEvent) {
+        this.exposeHeartBeatEvent = exposeHeartBeatEvent;
     }
 
     public String toString() {

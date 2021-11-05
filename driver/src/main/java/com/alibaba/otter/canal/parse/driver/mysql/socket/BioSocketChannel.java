@@ -18,7 +18,7 @@ import java.nio.channels.ClosedByInterruptException;
 public class BioSocketChannel implements SocketChannel {
 
     static final int     DEFAULT_CONNECT_TIMEOUT = 10 * 1000;
-    static final int     SO_TIMEOUT              = 1000;
+    public static int    SO_TIMEOUT              = 3000;
     private Socket       socket;
     private InputStream  input;
     private OutputStream output;
@@ -90,7 +90,8 @@ public class BioSocketChannel implements SocketChannel {
         if (remain > 0 && accTimeout >= timeout) {
             throw new SocketTimeoutException("Timeout occurred, failed to read total " + readSize + " bytes in "
                                              + timeout + " milliseconds, actual read only " + (readSize - remain)
-                                             + " bytes");
+                                             + " bytes. socket timeout is " + SO_TIMEOUT + "ms."
+                                             + " actual socket time cost " + accTimeout + "ms.");
         }
         return data;
     }
@@ -122,7 +123,9 @@ public class BioSocketChannel implements SocketChannel {
 
         if (n < len && accTimeout >= timeout) {
             throw new SocketTimeoutException("Timeout occurred, failed to read total " + len + " bytes in " + timeout
-                                             + " milliseconds, actual read only " + n + " bytes");
+                                             + " milliseconds, actual read only " + n + " bytes."
+                                             + " socket timeout is " + SO_TIMEOUT + "ms."
+                                             + " actual socket time cost " + accTimeout + "ms.");
         }
     }
 

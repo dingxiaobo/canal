@@ -34,6 +34,11 @@ public class GroupEventSink extends EntryEventSink {
         this.groupSize = groupSize;
     }
 
+    public GroupEventSink(int groupSize, Boolean exposeHeartBeatEvent){
+        super(exposeHeartBeatEvent);
+        this.groupSize = groupSize;
+    }
+
     public void start() {
         super.start();
 

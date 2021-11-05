@@ -50,6 +50,12 @@ public class EntryEventSink extends AbstractCanalEventSink<List<CanalEntry.Entry
         addHandler(new HeartBeatEntryEventHandler());
     }
 
+    public EntryEventSink(Boolean exposeHeartBeatEvent){
+        if (exposeHeartBeatEvent != null && Boolean.FALSE.equals(exposeHeartBeatEvent)) {
+            addHandler(new HeartBeatEntryEventHandler());
+        }
+    }
+
     public void start() {
         super.start();
         Assert.notNull(eventStore);
