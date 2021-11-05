@@ -18,3 +18,20 @@ mvn clean deploy -DskipTests
 
 调大BioSocketChannel.SO_TIMEOUT参数，避免友邦30个实时同步任务同时DUMP同一个实例
 
+## 1.1.4.2
+
+### 解析 FORMAT_DESCRIPTION
+
+`EntryProtocol.proto` 里添加一种 FORMAT_DESCRIPTION，让下游可以感知到日志切换
+
+#### 如何编译canal里的protobuf
+下载 proto compiler 3.6.1 版本，并赋予运行权限
+
+在工程目录下执行 
+```bash
+~/app/protoc-3.6.1-osx-x86_64/bin/protoc  --java_out=protocol/src/main/java -I=protocol/src/main/java/com/alibaba/otter/canal/protocol AdminProtocol.proto 
+~/app/protoc-3.6.1-osx-x86_64/bin/protoc  --java_out=protocol/src/main/java -I=protocol/src/main/java/com/alibaba/otter/canal/protocol CanalProtocol.proto 
+~/app/protoc-3.6.1-osx-x86_64/bin/protoc  --java_out=protocol/src/main/java -I=protocol/src/main/java/com/alibaba/otter/canal/protocol EntryProtocol.proto
+~/app/protoc-3.6.1-osx-x86_64/bin/protoc  --java_out=protocol/src/main/java EntryProtocol.proto 
+ 
+```

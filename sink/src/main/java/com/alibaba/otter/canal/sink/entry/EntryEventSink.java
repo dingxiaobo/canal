@@ -96,6 +96,7 @@ public class EntryEventSink extends AbstractCanalEventSink<List<CanalEntry.Entry
                                                                                             throws InterruptedException {
         boolean hasRowData = false;
         boolean hasHeartBeat = false;
+        boolean hasFiledesc = false;
         List<Event> events = new ArrayList<Event>();
         for (CanalEntry.Entry entry : entrys) {
             if (!doFilter(entry)) {
@@ -117,11 +118,12 @@ public class EntryEventSink extends AbstractCanalEventSink<List<CanalEntry.Entry
 
             hasRowData |= (entry.getEntryType() == EntryType.ROWDATA);
             hasHeartBeat |= (entry.getEntryType() == EntryType.HEARTBEAT);
+            hasFiledesc |= (entry.getEntryType() == EntryType.FORMATDESCRIPTION);
             Event event = new Event(new LogIdentity(remoteAddress, -1L), entry, raw);
             events.add(event);
         }
 
-        if (hasRowData || hasHeartBeat) {
+        if (hasRowData || hasHeartBeat || hasFiledesc) {
             // 存在row记录 或者 存在heartbeat记录，直接跳给后续处理
             return doSink(events);
         } else {
