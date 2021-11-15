@@ -35,3 +35,8 @@ mvn clean deploy -DskipTests
 ~/app/protoc-3.6.1-osx-x86_64/bin/protoc  --java_out=protocol/src/main/java EntryProtocol.proto 
  
 ```
+
+
+## 1.1.4.3
+
+修复，指定一个明明存在的时间戳位点时，报错找不到位点

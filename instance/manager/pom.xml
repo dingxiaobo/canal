@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.alibaba.otter</groupId>
 		<artifactId>canal</artifactId>
-		<version>1.1.4.2-DW-DI-SNAPSHOT</version>
+		<version>1.1.4.3-DW-DI-SNAPSHOT</version>
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 	<groupId>com.alibaba.otter</groupId>
