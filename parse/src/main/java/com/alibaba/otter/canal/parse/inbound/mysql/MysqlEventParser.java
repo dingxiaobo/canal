@@ -29,6 +29,7 @@ import com.alibaba.otter.canal.parse.inbound.mysql.dbsync.TableMetaCache;
 import com.alibaba.otter.canal.parse.inbound.mysql.tsdb.DatabaseTableMeta;
 import com.alibaba.otter.canal.parse.support.AuthenticationInfo;
 import com.alibaba.otter.canal.protocol.CanalEntry;
+import com.alibaba.otter.canal.protocol.CanalEntry.EntryType;
 import com.alibaba.otter.canal.protocol.position.EntryPosition;
 import com.alibaba.otter.canal.protocol.position.LogPosition;
 import com.taobao.tddl.dbsync.binlog.LogEvent;
@@ -786,16 +787,9 @@ public class MysqlEventParser extends AbstractMysqlEventParser implements CanalE
                         // 记录一下上一个事务结束的位置，即下一个事务的position
                         // position = current +
                         // data.length，代表该事务的下一条offest，避免多余的事务重复
-                        if (CanalEntry.EntryType.TRANSACTIONEND.equals(entry.getEntryType())) {
-                            entryPosition = new EntryPosition(logfilename, logfileoffset, logposTimestamp, serverId);
-                            if (logger.isDebugEnabled()) {
-                                logger.debug("set {} to be pending start position before finding another proper one...",
-                                    entryPosition);
-                            }
-                            logPosition.setPostion(entryPosition);
-                            entryPosition.setGtid(entry.getHeader().getGtid());
-                        } else if (CanalEntry.EntryType.TRANSACTIONBEGIN.equals(entry.getEntryType())) {
-                            // 当前事务开始位点
+                        if (CanalEntry.EntryType.TRANSACTIONEND.equals(entry.getEntryType())
+                            || CanalEntry.EntryType.TRANSACTIONBEGIN.equals(entry.getEntryType())
+                            || CanalEntry.EntryType.FORMATDESCRIPTION.equals(entry.getEntryType())) {
                             entryPosition = new EntryPosition(logfilename, logfileoffset, logposTimestamp, serverId);
                             if (logger.isDebugEnabled()) {
                                 logger.debug("set {} to be pending start position before finding another proper one...",
