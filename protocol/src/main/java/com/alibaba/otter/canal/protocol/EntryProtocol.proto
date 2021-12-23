@@ -106,6 +106,10 @@ message Column {
 
 	/**字段mysql类型**/
 	string		mysqlType		= 		10;
+
+	/**是否是唯一索引**/
+	bool 		isUnique			= 		12;
+
 }
 
 message RowData {
