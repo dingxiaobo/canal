@@ -44,3 +44,7 @@ mvn clean deploy -DskipTests
 ## 1.1.4.4
 
 对外透出`UniqueKey`，在源表无主键的时候，用唯一索引来做并发
+
+## 1.1.4.5
+
+分离构造方法和初始化方法

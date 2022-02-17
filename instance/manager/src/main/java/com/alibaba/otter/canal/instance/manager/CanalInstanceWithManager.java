@@ -79,7 +79,9 @@ public class CanalInstanceWithManager extends AbstractCanalInstance {
         this.canalId = canal.getId();
         this.destination = canal.getName();
         this.filter = filter;
+    }
 
+    public void init() {
         logger.info("init CanalInstance for {}-{} with parameters:{}", canalId, destination, parameters);
         // 初始化报警机制
         initAlarmHandler();

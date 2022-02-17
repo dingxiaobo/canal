@@ -17,7 +17,9 @@ public class ManagerCanalInstanceGenerator implements CanalInstanceGenerator {
     public CanalInstance generate(String destination) {
         Canal canal = canalConfigClient.findCanal(destination);
         String filter = canalConfigClient.findFilter(destination);
-        return new CanalInstanceWithManager(canal, filter);
+        CanalInstanceWithManager manager = new CanalInstanceWithManager(canal, filter);
+        manager.init();
+        return manager;
     }
 
     // ================ setter / getter ================

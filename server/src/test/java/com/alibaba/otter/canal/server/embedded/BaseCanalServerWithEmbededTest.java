@@ -37,7 +37,9 @@ public abstract class BaseCanalServerWithEmbededTest {
 
             public CanalInstance generate(String destination) {
                 Canal canal = buildCanal();
-                return new CanalInstanceWithManager(canal, FILTER);
+                CanalInstanceWithManager manager = new CanalInstanceWithManager(canal, FILTER);
+                manager.init();
+                return manager;
             }
         });
         server.start();
