@@ -48,3 +48,7 @@ mvn clean deploy -DskipTests
 ## 1.1.4.5
 
 分离构造方法和初始化方法
+
+## 1.1.4.6
+
+支持并行解析参数 `parallelThreadSize` 可配，避免出现开启并行解析 多个实时同步任务运行在一台机器上，到是机器CPU飙高被挂起的问题。

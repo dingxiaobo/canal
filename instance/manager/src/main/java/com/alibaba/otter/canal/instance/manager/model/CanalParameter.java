@@ -119,6 +119,7 @@ public class CanalParameter implements Serializable {
     private Long                     standbyLogfileOffest               = null;
     private Long                     standbyTimestamp                   = null;
     private Boolean                  parallel                           = Boolean.FALSE;
+    private Integer                  parallelThreadSize                 = null;
 
     //自定义alarmHandler类全路径
     private String                   alarmHandlerClass                  = null;
@@ -997,6 +998,14 @@ public class CanalParameter implements Serializable {
 
     public void setParallel(Boolean parallel) {
         this.parallel = parallel;
+    }
+
+    public Integer getParallelThreadSize() {
+        return parallelThreadSize;
+    }
+
+    public void setParallelThreadSize(Integer parallelThreadSize) {
+        this.parallelThreadSize = parallelThreadSize;
     }
 
     public String getAlarmHandlerClass() {
