@@ -337,6 +337,9 @@ public class CanalInstanceWithManager extends AbstractCanalInstance {
             mysqlEventParser.setProfilingEnabled(false);
             mysqlEventParser.setFilterTableError(parameters.getFilterTableError());
             mysqlEventParser.setParallel(parameters.getParallel());
+            if (parameters.getParallelThreadSize() != null) {
+                mysqlEventParser.setParallelThreadSize(parameters.getParallelThreadSize());
+            }
             mysqlEventParser.setIsGTIDMode(BooleanUtils.toBoolean(parameters.getGtidEnable()));
             // tsdb
             if (parameters.getTsdbSnapshotInterval() != null) {
@@ -384,6 +387,9 @@ public class CanalInstanceWithManager extends AbstractCanalInstance {
             localBinlogEventParser.setDetectingIntervalInSeconds(parameters.getDetectingIntervalInSeconds());
             localBinlogEventParser.setFilterTableError(parameters.getFilterTableError());
             localBinlogEventParser.setParallel(parameters.getParallel());
+            if (parameters.getParallelThreadSize() != null) {
+                localBinlogEventParser.setParallelThreadSize(parameters.getParallelThreadSize());
+            }
             // 数据库信息，反查表结构时需要
             if (!CollectionUtils.isEmpty(dbAddresses)) {
                 localBinlogEventParser.setMasterInfo(new AuthenticationInfo(dbAddresses.get(0),
