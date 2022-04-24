@@ -208,8 +208,8 @@ public class LogEventConvert extends AbstractCanalLifeCycle implements BinlogPar
         LogHeader logHeader = logEvent.getHeader();
         Pair.Builder builder = Pair.newBuilder();
 
-        Header header = createHeader(logHeader, "", "", EventType.FORMAT_DESCRIPTION);
-        return createEntry(header, EntryType.FORMATDESCRIPTION, builder.build().toByteString());
+        Header header = createHeader(logHeader, "", "", EventType.PREVIOUS_GTIDS);
+        return createEntry(header, EntryType.PREVIOUSGTIDS, builder.build().toByteString());
     }
 
     private Entry parseQueryEvent(QueryLogEvent event, boolean isSeek) {
