@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.taobao.tddl.dbsync.binlog.event.FormatDescriptionLogEvent;
+import com.taobao.tddl.dbsync.binlog.event.PreviousGtidsLogEvent;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -147,6 +148,8 @@ public class LogEventConvert extends AbstractCanalLifeCycle implements BinlogPar
                 return parseHeartbeatLogEvent((HeartbeatLogEvent) logEvent);
             case LogEvent.FORMAT_DESCRIPTION_EVENT:
                 return parseFormatDescriptionEvent((FormatDescriptionLogEvent) logEvent);
+            case LogEvent.PREVIOUS_GTIDS_LOG_EVENT:
+                return parsePreviousGtidsEvent((PreviousGtidsLogEvent) logEvent);
             default:
                 break;
         }
@@ -196,6 +199,14 @@ public class LogEventConvert extends AbstractCanalLifeCycle implements BinlogPar
         builder.setValue(String.valueOf(logEvent.getBinlogVersion()));
         builder.setKey("serverVersion");
         builder.setValue(logEvent.getServerVersion());
+
+        Header header = createHeader(logHeader, "", "", EventType.FORMAT_DESCRIPTION);
+        return createEntry(header, EntryType.FORMATDESCRIPTION, builder.build().toByteString());
+    }
+
+    private Entry parsePreviousGtidsEvent(PreviousGtidsLogEvent logEvent) {
+        LogHeader logHeader = logEvent.getHeader();
+        Pair.Builder builder = Pair.newBuilder();
 
         Header header = createHeader(logHeader, "", "", EventType.FORMAT_DESCRIPTION);
         return createEntry(header, EntryType.FORMATDESCRIPTION, builder.build().toByteString());

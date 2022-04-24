@@ -82,9 +82,9 @@ public class EventTransactionBuffer extends AbstractCanalLifeCycle {
                 break;
             case HEARTBEAT:
                 // master过来的heartbeat，说明binlog已经读完了，是idle状态
-                // fall through
             case FORMATDESCRIPTION:
-                // 日志轮转时会有 FORMATDESCRIPTION 暴露给下游
+            case PREVIOUSGTIDS:
+                // 日志轮转时会有 PREVIOUSGTIDS、FORMATDESCRIPTION 暴露给下游
                 put(entry);
                 flush();
                 break;

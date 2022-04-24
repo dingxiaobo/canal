@@ -52,3 +52,11 @@ mvn clean deploy -DskipTests
 ## 1.1.4.6
 
 支持并行解析参数 `parallelThreadSize` 可配，避免出现开启并行解析 多个实时同步任务运行在一台机器上，到是机器CPU飙高被挂起的问题。
+
+
+
+## 1.1.4.7
+
+透出 PREV_GTID
+
+`EntryProtocol.proto` 里添加一种 PREVIOUSGTIDS，让下游可以感知到日志切换

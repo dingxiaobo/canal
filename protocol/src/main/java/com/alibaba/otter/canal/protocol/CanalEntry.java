@@ -55,6 +55,10 @@ public final class CanalEntry {
      * <code>FORMATDESCRIPTION = 6;</code>
      */
     FORMATDESCRIPTION(6),
+    /**
+     * <code>PREVIOUSGTIDS = 7;</code>
+     */
+    PREVIOUSGTIDS(7),
     UNRECOGNIZED(-1),
     ;
 
@@ -90,6 +94,10 @@ public final class CanalEntry {
      * <code>FORMATDESCRIPTION = 6;</code>
      */
     public static final int FORMATDESCRIPTION_VALUE = 6;
+    /**
+     * <code>PREVIOUSGTIDS = 7;</code>
+     */
+    public static final int PREVIOUSGTIDS_VALUE = 7;
 
 
     public final int getNumber() {
@@ -117,6 +125,7 @@ public final class CanalEntry {
         case 4: return HEARTBEAT;
         case 5: return GTIDLOG;
         case 6: return FORMATDESCRIPTION;
+        case 7: return PREVIOUSGTIDS;
         default: return null;
       }
     }
@@ -258,6 +267,10 @@ public final class CanalEntry {
      * <code>FORMAT_DESCRIPTION = 16;</code>
      */
     FORMAT_DESCRIPTION(16),
+    /**
+     * <code>PREVIOUS_GTIDS = 17;</code>
+     */
+    PREVIOUS_GTIDS(17),
     UNRECOGNIZED(-1),
     ;
 
@@ -341,6 +354,10 @@ public final class CanalEntry {
      * <code>FORMAT_DESCRIPTION = 16;</code>
      */
     public static final int FORMAT_DESCRIPTION_VALUE = 16;
+    /**
+     * <code>PREVIOUS_GTIDS = 17;</code>
+     */
+    public static final int PREVIOUS_GTIDS_VALUE = 17;
 
 
     public final int getNumber() {
@@ -378,6 +395,7 @@ public final class CanalEntry {
         case 14: return XAROLLBACK;
         case 15: return MHEARTBEAT;
         case 16: return FORMAT_DESCRIPTION;
+        case 17: return PREVIOUS_GTIDS;
         default: return null;
       }
     }
@@ -13396,20 +13414,21 @@ public final class CanalEntry {
       "ime\030\001 \001(\003\022\025\n\rtransactionId\030\002 \001(\t\0225\n\005prop" +
       "s\030\003 \003(\0132&.com.alibaba.otter.canal.protoc" +
       "ol.Pair\"\"\n\004Pair\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 " +
-      "\001(\t*\224\001\n\tEntryType\022\035\n\031ENTRYTYPECOMPATIBLE" +
+      "\001(\t*\247\001\n\tEntryType\022\035\n\031ENTRYTYPECOMPATIBLE" +
       "PROTO2\020\000\022\024\n\020TRANSACTIONBEGIN\020\001\022\013\n\007ROWDAT" +
       "A\020\002\022\022\n\016TRANSACTIONEND\020\003\022\r\n\tHEARTBEAT\020\004\022\013" +
-      "\n\007GTIDLOG\020\005\022\025\n\021FORMATDESCRIPTION\020\006*\375\001\n\tE" +
-      "ventType\022\035\n\031EVENTTYPECOMPATIBLEPROTO2\020\000\022" +
-      "\n\n\006INSERT\020\001\022\n\n\006UPDATE\020\002\022\n\n\006DELETE\020\003\022\n\n\006C" +
-      "REATE\020\004\022\t\n\005ALTER\020\005\022\t\n\005ERASE\020\006\022\t\n\005QUERY\020\007" +
-      "\022\014\n\010TRUNCATE\020\010\022\n\n\006RENAME\020\t\022\n\n\006CINDEX\020\n\022\n" +
-      "\n\006DINDEX\020\013\022\010\n\004GTID\020\014\022\014\n\010XACOMMIT\020\r\022\016\n\nXA" +
-      "ROLLBACK\020\016\022\016\n\nMHEARTBEAT\020\017\022\026\n\022FORMAT_DES" +
-      "CRIPTION\020\020*B\n\004Type\022\030\n\024TYPECOMPATIBLEPROT" +
-      "O2\020\000\022\n\n\006ORACLE\020\001\022\t\n\005MYSQL\020\002\022\t\n\005PGSQL\020\003B0" +
-      "\n com.alibaba.otter.canal.protocolB\nCana" +
-      "lEntryH\001b\006proto3"
+      "\n\007GTIDLOG\020\005\022\025\n\021FORMATDESCRIPTION\020\006\022\021\n\rPR" +
+      "EVIOUSGTIDS\020\007*\221\002\n\tEventType\022\035\n\031EVENTTYPE" +
+      "COMPATIBLEPROTO2\020\000\022\n\n\006INSERT\020\001\022\n\n\006UPDATE" +
+      "\020\002\022\n\n\006DELETE\020\003\022\n\n\006CREATE\020\004\022\t\n\005ALTER\020\005\022\t\n" +
+      "\005ERASE\020\006\022\t\n\005QUERY\020\007\022\014\n\010TRUNCATE\020\010\022\n\n\006REN" +
+      "AME\020\t\022\n\n\006CINDEX\020\n\022\n\n\006DINDEX\020\013\022\010\n\004GTID\020\014\022" +
+      "\014\n\010XACOMMIT\020\r\022\016\n\nXAROLLBACK\020\016\022\016\n\nMHEARTB" +
+      "EAT\020\017\022\026\n\022FORMAT_DESCRIPTION\020\020\022\022\n\016PREVIOU" +
+      "S_GTIDS\020\021*B\n\004Type\022\030\n\024TYPECOMPATIBLEPROTO" +
+      "2\020\000\022\n\n\006ORACLE\020\001\022\t\n\005MYSQL\020\002\022\t\n\005PGSQL\020\003B0\n" +
+      " com.alibaba.otter.canal.protocolB\nCanal" +
+      "EntryH\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

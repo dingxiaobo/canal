@@ -201,6 +201,7 @@ enum EntryType{
 	HEARTBEAT				=		4;
 	GTIDLOG                 =       5;
 	FORMATDESCRIPTION = 6;
+	PREVIOUSGTIDS = 7;
 }
 
 /** 事件类型 **/
@@ -225,6 +226,7 @@ enum EventType {
     /** MASTER HEARTBEAT **/
     MHEARTBEAT  =       15;
 	  FORMAT_DESCRIPTION  =    16;
+	  PREVIOUS_GTIDS  =    17;
 }
 
 /**数据库类型**/
