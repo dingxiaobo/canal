@@ -788,8 +788,7 @@ public class MysqlEventParser extends AbstractMysqlEventParser implements CanalE
                         // position = current +
                         // data.length，代表该事务的下一条offest，避免多余的事务重复
                         if (CanalEntry.EntryType.TRANSACTIONEND.equals(entry.getEntryType())
-                            || CanalEntry.EntryType.TRANSACTIONBEGIN.equals(entry.getEntryType())
-                            || CanalEntry.EntryType.FORMATDESCRIPTION.equals(entry.getEntryType())) {
+                            || CanalEntry.EntryType.TRANSACTIONBEGIN.equals(entry.getEntryType())) {
                             entryPosition = new EntryPosition(logfilename, logfileoffset, logposTimestamp, serverId);
                             if (logger.isDebugEnabled()) {
                                 logger.debug("set {} to be pending start position before finding another proper one...",

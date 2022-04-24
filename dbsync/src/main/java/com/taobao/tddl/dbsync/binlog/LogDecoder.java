@@ -399,6 +399,7 @@ public final class LogDecoder {
                 PreviousGtidsLogEvent event = new PreviousGtidsLogEvent(header, buffer, descriptionEvent);
                 /* updating position in context */
                 logPosition.position = header.getLogPos();
+                header.putGtid(context.getGtidSet(), gtidLogEvent);
                 return event;
             }
             case LogEvent.TRANSACTION_CONTEXT_EVENT: {
